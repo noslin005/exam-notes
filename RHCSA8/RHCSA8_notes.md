@@ -1,76 +1,78 @@
-| **Mounting** |                                                              |
-| ------------ | ------------------------------------------------------------ |
-| `Mount`        | Show all the current mounts                                  |
-| `findmnt`      | Show all the current mounts with its relations               |
-| `df -Th`       | Show all available disk space with the system mounts (including the filesystem) |
-|              |                                                              |
+| 1. **Mounting** |                                                              |
+| --------------- | ------------------------------------------------------------ |
+| `Mount`         | Show all the current mounts                                  |
+| `findmnt`       | Show all the current mounts with its relations               |
+| `df -Th`        | Show all available disk space with the system mounts (including the filesystem) |
+|                 |                                                              |
 
-| **Creating a user / group**                    |                                                              |
-| ---------------------------------------------- | ------------------------------------------------------------ |
-| /etc/login.defs                                | Config file that has been used to store default variables for users etc. |
+| 2. **Creating a user/group**                     |                                                              |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| `/etc/login.defs`                                | Config file that has been used to store default variables for users etc. |
 | `useradd \<username\>`                           | Adding a user                                                |
 | `passwd \<username\>`                            | Changing the password of the user                            |
 | `usermod -aG \<groupname\> \<username\>`         | Append a user to a group                                     |
-| `usermod \<username]> -d \<newhomedirectory\>`   | Changing the default homedirectors for a user **excluding** copying the old homefolder data! |
-| `usermod \<username\> -m -d <newhomedirectory\>` | Changing the default homedirectors for a user **including** copying the old homefolder data! |
-| `groupmems -g \<groupname\> -l`                 | Showing which users a member of a group                      |
+| `usermod \<username]> -d \<newhomedirectory\>`   | Changing the default home directory for a user **excluding** copying the old home folder data! |
+| `usermod \<username\> -m -d <newhomedirectory\>` | Changing the default home directory for a user **including** copying the old home folder data! |
+| `groupmems -g \<groupname\> -l`                  | Showing which users a member of a group                      |
 
-| **ACL Linux**         |                                                              |
-| --------------------- | ------------------------------------------------------------ |
-| Getfacl /             | Get the directory ACL on that folder                         |
-| Setfacl \<directory\> |                                                              |
-|                       |                                                              |
-| SUID                  | Runned file is runned on the SUID bit user (4000) chmod +4000 / chmod u+s |
-| SGID                  | Automatically new files created in this folder get the group of the GUID Bit (2000) chmod +2000 / chmod g+s |
-| Sticky bit            | Removing files is not allowed by others in this folder (1000) chmod +1000 / chmod +t |
+| 3. **ACL Linux**        |                                                              |
+| ----------------------- | ------------------------------------------------------------ |
+| `getfacl /`             | Get the directory ACL on that folder                         |
+| `setfacl \<directory\>` |                                                              |
+|                         |                                                              |
+| `SUID`                  | Runned file is runned on the SUID bit user (4000) chmod +4000 / chmod u+s |
+| `SGID`                  | Automatically new files created in this folder get the group of the GUID Bit (2000) chmod +2000 / chmod g+s |
+| `Sticky bit`            | Removing files is not allowed by others in this folder (1000) chmod +1000 / chmod +t |
 
-| **File management**  |                                                        |
-| -------------------- | ------------------------------------------------------ |
-| Ls -R                | Show all files in a directory including subdirectories |
-| Cp -R /etc /home/dir | Copies all the files including the subdirectories      |
-|                      |                                                        |
-|                      |                                                        |
-|                      |                                                        |
 
-| **Key-Based Authentication SSH**                             |                                                              |
+
+| 4. **File management   |                                                        |
+| ---------------------- | ------------------------------------------------------ |
+| `ls -r`                | Show all files in a directory including subdirectories |
+| `cp -R /etc /home/dir` | Copies all the files including the subdirectories      |
+
+
+
+| 5. **Key-Based Authentication SSH** |                                                              |
+| ----------------------------------- | ------------------------------------------------------------ |
+| `ssh-keygen -t rsa -b 4096`         | Creating a key pair (private and public) in the root folder ~/.ssh |
+| `chmod 700 ~/.ssh`                  | ssh folder 700                                               |
+| `chmod -R 600 ~/.ssh/*`             | Contents in ssh folder 600                                   |
+| `ssh-copy-id root@192.168.82.128`   | Copy the public key to a different host                      |
+
+
+
+| 6. **Networking**            |                                                              |
+| ---------------------------- | ------------------------------------------------------------ |
+| `ip link show`               | Show the link stat of all the interfaces                     |
+| `ip -s link show`            | Show the current link statistics (packets sent, received etc.) |
+| `ip route show`              | Show the default route on the machine                        |
+| `ss -lt`                     | Showing all the listening ports on the current system        |
+| `nmcli dev status`           | Show al the status of all the network interfaces on the host |
+| `nmcli dev show \<NICname\>` | Show status of a interface                                   |
+| `dhclient`                   | Refresh the dhcp client to get a new IP address              |
+
+| 7. **Packages Manager**              |                                                              |
+| ------------------------------------ | ------------------------------------------------------------ |
+| `yum info nmap`                      | Show info about a package                                    |
+| `yum list \| less`                   | Show all the installed packages                              |
+| `yum groups list`                    | Show all the groups that are available to install            |
+| `yum groups info "Basis Web Server"` | Show which packages are in the group basic web server        |
+|                                      |                                                              |
+| `yum history`                        | Show which packages you installed en when                    |
+| `yum history undo <number>`          | Undo the action that take place (show info through yum history) |
+|                                      |                                                              |
+
+| 8. **Mounting NFS Share**                                    |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Ssh-keygen -t rsa -b 4096                                    | Creating a key pair (private and public) in the root folder ~/.ssh |
-| Ssh folder 700                                               |                                                              |
-| Contents in ssh folder 600                                   |                                                              |
-| Ssh-copy-id [root@192.168.82.128](mailto:root@192.168.82.128) | Copy the public key to a different host                      |
-
-| **Networking**             |                                                              |
-| -------------------------- | ------------------------------------------------------------ |
-| Ip link show               | Show the link stat of all the interfaces                     |
-| Ip -s link show            | Show the current link statistics (packets sent, received etc.) |
-| Ip route show              | Show the default route on the machine                        |
-|                            |                                                              |
-| Ss -lt                     | Showing all the listening ports on the current system        |
-| Nmcli dev status           | Show al the status of all the network interfaces on the host |
-| Nmcli dev show \<NICname\> | Show status of a interface                                   |
-| Dhclient                   | Refresh the dhcp client to get a new ipaddress               |
-
-| **Packages**                       |                                                              |
-| ---------------------------------- | ------------------------------------------------------------ |
-| Yum info nmap                      | Show info about a package                                    |
-| Yum list \| less                   | Show all the installed packages                              |
-| Yum groups list                    | Show all the groups that are available te install            |
-| Yum groups info “Basis Web Server” | Show which packages are in the group basic web server        |
-|                                    |                                                              |
-| Yum history                        | Show which packages you installed en when                    |
-| Yum history undo \<number\>        | Undo the action that take place (show info through yum history) |
-|                                    |                                                              |
-
-| **Mounting NFS Share**                                       |                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Show mount -e \<IP address of the server\>                   | Showing witch directories are available to make a connection to |
-| mount 192.168.82.132:/var/share /var/share                   | Mounting the share                                           |
-| 192.168.82.132:/var/share	/var/share/	nfs	defaults	0 0 | Add this row to the /etc/fstab/                              |
-| Umount /var/share                                            | Unmount the share on the client                              |
-| mount                                                        | Show all the current mounts                                  |
+| `show mount -e <IP address of the server>`                   | Showing witch directories are available to make a connection to |
+| `mount 192.168.82.132:/var/share /var/share`                 | Mounting the share                                           |
+| `192.168.82.132:/var/share	/var/share/	nfs	defaults	0 0` | Add this row to the /etc/fstab/                              |
+| `umount /var/share`                                          | Unmount the share on the client                              |
+| `mount`                                                      | Show all the current mounts                                  |
 | **AutoFS NFS Share**                                         |                                                              |
-| Yum install autofs                                           |                                                              |
-| Systemctl enable —now autofs                                 |                                                              |
+| `yum install autofs`                                         |                                                              |
+| `systemctl enable —now autofs`                               |                                                              |
 | ![image-20210123121252773](images/RHCSA8_notes/image-20210123121252773.png) | Vi /etc/auto.master                                          |
 | ![image-20210123121338173](images/RHCSA8_notes/image-20210123121338173.png) | Vi /etc/auto.home                                            |
 
@@ -286,4 +288,3 @@
 | **Xz**                               | Highest compression but slower                               |
 | tar -cJvf                            | -c = create -J = XZ -v = verbose (display each file name) -f = file |
 | Tar -xJvf                            | -x = extract -J = XZ -v = verbose (display each file name) -f = file |
-
