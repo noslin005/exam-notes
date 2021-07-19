@@ -1,19 +1,19 @@
 | **Mounting** |                                                              |
 | ------------ | ------------------------------------------------------------ |
-| Mount        | Show all the current mounts                                  |
-| findmnt      | Show all the current mounts with its relations               |
-| Df -Th       | Show all available disk space with the system mounts (including the filesystem) |
+| `Mount`        | Show all the current mounts                                  |
+| `findmnt`      | Show all the current mounts with its relations               |
+| `df -Th`       | Show all available disk space with the system mounts (including the filesystem) |
 |              |                                                              |
 
 | **Creating a user / group**                    |                                                              |
 | ---------------------------------------------- | ------------------------------------------------------------ |
 | /etc/login.defs                                | Config file that has been used to store default variables for users etc. |
-| Useradd \<username\>                           | Adding a user                                                |
-| Passwd \<username\>                            | Changing the password of the user                            |
-| Usermod -aG \<groupname\> \<username\>         | Append a user to a group                                     |
-| Usermod \<username]> -d \<newhomedirectory\>   | Changing the default homedirectors for a user **excluding** copying the old homefolder data! |
-| Usermod \<username\> -m -d <newhomedirectory\> | Changing the default homedirectors for a user **including** copying the old homefolder data! |
-| groupmems -g \<groupname\> -l                  | Showing which users a member of a group                      |
+| `useradd \<username\>`                           | Adding a user                                                |
+| `passwd \<username\>`                            | Changing the password of the user                            |
+| `usermod -aG \<groupname\> \<username\>`         | Append a user to a group                                     |
+| `usermod \<username]> -d \<newhomedirectory\>`   | Changing the default homedirectors for a user **excluding** copying the old homefolder data! |
+| `usermod \<username\> -m -d <newhomedirectory\>` | Changing the default homedirectors for a user **including** copying the old homefolder data! |
+| `groupmems -g \<groupname\> -l`                 | Showing which users a member of a group                      |
 
 | **ACL Linux**         |                                                              |
 | --------------------- | ------------------------------------------------------------ |
